@@ -1,7 +1,5 @@
 package encapsule;
 
-import java.util.Scanner;
-
 /**
  * @file_name : Factor.java
  * @author : g9yong44@gmail.com
@@ -10,7 +8,7 @@ import java.util.Scanner;
  */
 public class Factor2 {
 	public String factorCalc(int dest) {
-		String result = "정답 : ";
+		String result = "";
 		for (int i = 1; i <= dest; i++) {
 			if (dest % i == 0) {
 				result = result.concat(i + " ");
@@ -18,4 +16,13 @@ public class Factor2 {
 		}
 		return result;
 	}
+//
+//	public String getName() {
+//		String foo = "";
+//		return foo;
+//	}
+//	public String ggetName() {
+//		String	name = "";
+//		return name;
+//	}
 }
