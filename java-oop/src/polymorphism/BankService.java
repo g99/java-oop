@@ -1,7 +1,12 @@
 package polymorphism;
 
 import java.util.Scanner;
-
+/**
+ * @file_name : BankService.java
+ * @author    : g9yong44@gmail.com
+ * @date      : 2015. 9. 25.
+ * @story     : 사용자 통장개설 프로그램
+ */
 public class BankService implements Bank {
 	Account account = new Account();
 
