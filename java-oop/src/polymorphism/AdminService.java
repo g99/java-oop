@@ -1,57 +1,83 @@
 package polymorphism;
 
-public class AdminService implements Admin{
+public class AdminService implements Admin {
 	private Account[] accountList;
 	private int count;
 
 	public AdminService() {
-		// TODO Auto-generated constructor stub
-		accountList = new Account[1000];
+		accountList = new Account[1000]; // 배열생성
+		count = 0; // count 변수 초기화
 	}
-	
+
 	@Override
-	public String openAccount(int accountNo, String name, int restMoney) {
-		// TODO Auto-generated method stub
-		Account account = new Account();
-		String msg = "";
-		//account.setAccountNo(accountNo);
-		account.setOwnerName(name);
-		account.setRestMoney(restMoney);
-		accountList[count] = account;
+	public String openAccount(String name, int money) {
+		accountList[count] = new Account(); // 계좌생성후 초기화
+		accountList[count].setOwnerName(name);
+		accountList[count].setRestMoney(money);
 		count++;
-		msg = account.toString();
-		return msg;
+		return accountList[count - 1].toString();
 	}
-	
+
 	@Override
-	public Account searchAccountByAccountNo(int accountNo) {
-		// TODO Auto-generated method stub
+	public String openAccount(String accountNo, String name, int money) {
+		accountList[count] = new Account(); // 계좌생성후 초기화 + 계좌번호 입력
+		accountList[count].setOwnerName(name);
+		accountList[count].setRestMoney(money);
+		accountList[count].setAccountNo(accountNo);
+		count++;
+		return accountList[count - 1].toString();
+	}
+
+	@Override
+	public Account searchAccountByAccountNo(String accountNo) {
 		Account searchAccount = null;
-		for (int i = 0; i < count; i++){
-		//난 스트링이라그럼
-		//	if(accountList[i].getAccountNo() == accountNo){
+		for (int i = 0; i < count; i++) {
+			if (accountList[i].getAccountNo().equals(accountNo)) {
 				searchAccount = accountList[i];
 			}
-
-		return null;//searchAccount;
+		}
+		return searchAccount;
 	}
 
 	@Override
 	public Account[] searchAccountsByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		int localCount = 0;
+		for (int i = 0; i < count; i++) {
+			if (accountList[i].getOwnerName().equals(name)) {
+				localCount++;
+			}
+		}
+		Account[] searchAccountList = new Account[localCount];
+		localCount = 0;
+		for (int i = 0; i < count; i++) {
+			if (accountList[i].getOwnerName().equals(name)) {
+				searchAccountList[localCount++] = accountList[i];
+			}
+		}
+		return searchAccountList;
 	}
 
 	@Override
-	public String closeAccount(int accountNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public String closeAccount(String accountNo) {
+		Account searchAccount = null;
+		String name = null, result = "요청하신 계좌는 존재하지 않습니다.\n";
+		for (int i = 0; i < count; i++) {
+			if (accountList[i].getAccountNo().equals(accountNo)) {
+				name = accountList[i].getOwnerName();
+				for (int j = i; j < count; j++) {
+					if (j != count - 1) {
+						accountList[j] = accountList[j + 1]; //덮어써서 지워버림
+					}
+				}
+				result =  name + " 고객님, 요청하신 해지건이 완료되었습니다.\n";
+			}
+		}
+		return result;
 	}
 
 	@Override
 	public int countAll() {
-		// TODO Auto-generated method stub
-		return 0;
+		return count;
 	}
 
 	public Account[] getAccountList() {

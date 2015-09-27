@@ -38,7 +38,8 @@ public class Account {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return BANK_NAME + "\n" + accountNo + "\t" + ownerName + "\n" + "잔액 : " + restMoney;
+		return "\n[" + BANK_NAME + "]" + "\n계좌주 : " + ownerName + "\n계좌번호 : " + accountNo + "\n" + "잔액 : "
+				+ restMoney + "\n";
 	}
 
 	public String getAccountNo() {
