@@ -38,17 +38,25 @@ public class HanbitOffice {
 				System.out.print("계좌번호 : ");
 				accountNo = scanner.next();
 				Account result = adminService.searchAccountByAccountNo(accountNo);
-				System.out.println("<" + result.getAccountNo() + "> 계좌번호로 찾으신 정보는 다음과 같습니다.");
-				System.out.println(result.toString());
+				if (result != null) {
+					System.out.println("<" + result.getAccountNo() + "> 계좌번호로 찾으신 정보는 다음과 같습니다.");
+					System.out.println(result.toString());
+				} else {
+					System.out.println("해당하는 계좌가 존재하지 않습니다.\n");
+				}
 				break;
 			case 3:
 				System.out.println("이름으로 계좌를 검색합니다.");
 				System.out.print("이름 : ");
 				name = scanner.next();
 				Account[] results = adminService.searchAccountsByName(name);
-				System.out.println("<" + name + "> 과 일치하는 " + results.length + "개의 계좌가 발견되었습니다.");
-				for (int i = 0; i < results.length; i++) {
-					System.out.println(results[i].toString());
+				if (results.length == 0) {
+					System.out.println("해당하는 계좌가 존재하지 않습니다.\n");
+				} else {
+					System.out.println("<" + name + "> 과 일치하는 " + results.length + "개의 계좌가 발견되었습니다.");
+					for (int i = 0; i < results.length; i++) {
+						System.out.println(results[i].toString());
+					}
 				}
 				break;
 			case 4:

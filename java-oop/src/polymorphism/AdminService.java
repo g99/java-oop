@@ -67,11 +67,13 @@ public class AdminService implements Admin {
 				for (int j = i; j < count; j++) {
 					if (j != count - 1) {
 						accountList[j] = accountList[j + 1]; //덮어써서 지워버림
-					}
+					}				
 				}
 				result =  name + " 고객님, 요청하신 해지건이 완료되었습니다.\n";
 			}
 		}
+		accountList[count-1] = null;
+		count--;
 		return result;
 	}
 
