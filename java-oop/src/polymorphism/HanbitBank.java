@@ -9,7 +9,7 @@ public class HanbitBank {
 		int choice, money;
 		String name, password;
 		Scanner scanner = new Scanner(System.in);
-		BankService bankService = new BankService();
+		BankService bankService = BankService.getInstance();
 		while (true) {
 			System.out.println("원하는 업무를 선택해주세요.");
 			System.out.println("1. 통장개설, 2. 입금, 3. 출금, 4. 잔액조회, 5. 정지");	

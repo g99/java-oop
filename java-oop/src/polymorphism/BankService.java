@@ -9,6 +9,11 @@ import java.util.Scanner;
  */
 public class BankService implements Bank {
 	Account account = new Account();
+	private static BankService Instance = new BankService();
+	
+	public static BankService getInstance() {
+		return Instance;
+	}
 
 	@Override
 	public String deposit(int money) {
